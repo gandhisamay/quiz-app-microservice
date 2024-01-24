@@ -1,7 +1,7 @@
 package com.quiz.app.controllers;
 
 import java.util.List;
-
+import com.quiz.app.models.QuizQuestions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,13 +26,11 @@ public class QuizController {
   @Autowired
   QuizService quizService;
 
-  @GetMapping(value = "/create")
-  public ResponseEntity<Integer> createNewQuiz(@RequestParam String title, @RequestParam String category,
+  @GetMapping(value = "/create/category")
+  public ResponseEntity<Integer> createNewQuizByCategory(@RequestParam String title, @RequestParam String category,
       @RequestParam int noQues) {
 
-    return quizService.createNewQuiz(title, category, noQues);
-    // once we get the questions we save it
-    //
+    return quizService.createNewQuizByCategory(title, category, noQues);
   }
 
   @GetMapping(value = "/{id}")
@@ -45,6 +43,9 @@ public class QuizController {
     return quizService.getUserScore(userResponse);
   }
 
-  // @GetMapping(value="/scores")
+  @PostMapping(value = "/create/accept")
+  public ResponseEntity<String> createNewQuizAcceptingQuestions(@RequestBody QuizQuestions quizQuestions) {
+    return quizService.createNewQuizAcceptingQuestions(quizQuestions);
+  }
 
 }

@@ -5,10 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 @Data
 @Table(name = "questions")
@@ -16,6 +13,7 @@ import lombok.ToString;
 @Builder
 @AllArgsConstructor
 @ToString
+@NoArgsConstructor
 public class Question {
 
   @Id

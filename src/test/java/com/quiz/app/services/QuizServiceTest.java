@@ -2,10 +2,7 @@ package com.quiz.app.services;
 
 import com.quiz.app.daos.QuestionDao;
 import com.quiz.app.daos.QuizDao;
-import com.quiz.app.models.Question;
-import com.quiz.app.models.Quiz;
-import com.quiz.app.models.Response;
-import com.quiz.app.models.UserResponse;
+import com.quiz.app.models.*;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -69,7 +66,7 @@ public class QuizServiceTest {
         Quiz quiz = Quiz.builder().title(title).questions(questions).build();
         Mockito.when(quizDao.save(quiz)).thenReturn(quiz);
 
-        ResponseEntity<Integer> resp = quizService.createNewQuiz(title, category, noQues);
+        ResponseEntity<Integer> resp = quizService.createNewQuizByCategory(title, category, noQues);
 
         Assertions.assertThat(resp).isNotNull();
         Assertions.assertThat(resp.getBody()).isEqualTo(1);
@@ -90,5 +87,28 @@ public class QuizServiceTest {
         Assertions.assertThat(userScore).isNotNull();
         Assertions.assertThat(userScore.hasBody()).isTrue();
         Assertions.assertThat(userScore.getBody()).isEqualTo(1);
+    }
+
+    @Test
+    void createNewQuizAcceptingQuestions(){
+        //here we do all the magic here bitch
+
+        QuizQuestions quizQuestions = QuizQuestions.builder().title("Quizzes").questions(List.of(question)).build();
+        List<Question> questions = quizQuestions.getQuestions();
+        Mockito.when(questionDao.saveAll(questions)).thenReturn(questions);
+
+        Quiz quiz = Quiz.builder().title("random").id(1000).questions(questions).build();
+
+        Mockito.when(quizDao.save(quiz)).thenReturn(Mockito.any(Quiz.class));
+
+        ResponseEntity<String> resp = quizService.createNewQuizAcceptingQuestions(quizQuestions);
+        //how to check when the transaction has failed lmao ded
+        //this is done.
+
+        Assertions.assertThat(resp).isNotNull();
+        Assertions.assertThat(resp.hasBody()).isTrue();
+        Assertions.assertThat(resp.getBody()).isEqualTo("success");
+
+
     }
 }

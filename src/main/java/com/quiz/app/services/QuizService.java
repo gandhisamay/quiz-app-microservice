@@ -6,6 +6,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import com.quiz.app.models.*;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,11 +15,6 @@ import org.springframework.stereotype.Service;
 
 import com.quiz.app.daos.QuestionDao;
 import com.quiz.app.daos.QuizDao;
-import com.quiz.app.models.Question;
-import com.quiz.app.models.QuestionWrapper;
-import com.quiz.app.models.Quiz;
-import com.quiz.app.models.Response;
-import com.quiz.app.models.UserResponse;
 
 /**
  * QuizService
@@ -31,7 +28,7 @@ public class QuizService {
   @Autowired
   public QuestionDao questionDao;
 
-  public ResponseEntity<Integer> createNewQuiz(String title, String category, int noQues) {
+  public ResponseEntity<Integer> createNewQuizByCategory(String title, String category, int noQues) {
 
     List<Question> questions = questionDao.giveRandomQuestionsByCategory(category, noQues);
 
@@ -82,5 +79,14 @@ public class QuizService {
       return new ResponseEntity<Integer>(-1, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+  }
+
+  @Transactional
+  public ResponseEntity<String> createNewQuizAcceptingQuestions(QuizQuestions quizQuestions){
+    List<Question> savedQuestions = questionDao.saveAll(quizQuestions.getQuestions());
+    Quiz quiz = Quiz.builder().title(quizQuestions.getTitle()).questions(savedQuestions).build();
+    quizDao.save(quiz);
+
+    return new ResponseEntity<String>("success", HttpStatus.CREATED);
   }
 }

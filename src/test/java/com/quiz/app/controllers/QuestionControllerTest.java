@@ -35,13 +35,13 @@ public class QuestionControllerTest{
     @MockBean
     private QuestionService questionService;
 
-    private Question question;
+    /*private Question question;
 
     @BeforeEach
     public void setup(){
         question = Question.builder().id(23).title("Title").option1("o1").option2("o2").option3("o3").option4("o4")
                 .category("SQL").answer("o2").build();
-    }
+    }*/
 
     @Test
     void getAllQuestions() throws Exception{

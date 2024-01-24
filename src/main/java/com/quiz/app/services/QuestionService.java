@@ -3,6 +3,7 @@ package com.quiz.app.services;
 import java.util.List;
 
 import com.quiz.app.daos.QuestionDao;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.HttpStatus;
