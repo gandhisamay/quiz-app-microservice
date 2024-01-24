@@ -8,12 +8,14 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Table(name = "questions")
 @Entity
 @Builder
 @AllArgsConstructor
+@ToString
 public class Question {
 
   @Id
