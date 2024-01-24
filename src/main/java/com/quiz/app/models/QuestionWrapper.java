@@ -1,39 +1,33 @@
 package com.quiz.app.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
+/**
+ * QuestionWrapper
+ */
 @Data
-@Table(name = "questions")
-@Entity
-@Builder
-@AllArgsConstructor
-public class Question {
+@RequiredArgsConstructor
+public class QuestionWrapper {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   private int id;
-
   private String title;
   private String option1;
   private String option2;
   private String option3;
   private String option4;
-  private String answer;
-  private String category;
+
+  public QuestionWrapper(int id, String title, String option1, String option2, String option3, String option4) {
+    this.id = id;
+    this.title = title;
+    this.option1 = option1;
+    this.option2 = option2;
+    this.option3 = option3;
+    this.option4 = option4;
+  }
 
   public int getId() {
     return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
   }
 
   public String getTitle() {
@@ -42,6 +36,10 @@ public class Question {
 
   public void setTitle(String title) {
     this.title = title;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getOption1() {
@@ -76,19 +74,4 @@ public class Question {
     this.option4 = option4;
   }
 
-  public String getAnswer() {
-    return answer;
-  }
-
-  public void setAnswer(String answer) {
-    this.answer = answer;
-  }
-
-  public String getCategory() {
-    return category;
-  }
-
-  public void setCategory(String category) {
-    this.category = category;
-  }
 }
