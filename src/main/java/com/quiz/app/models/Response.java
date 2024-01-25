@@ -15,22 +15,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Response {
 
-  private int id;
-  private String response;
+    private int id;
+    private String response;
 
-  public int getId() {
-    return id;
-  }
+    public int getId() {
+        return id;
+    }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  public String getResponse() {
-    return response;
-  }
+    public String getResponse() {
+        return response;
+    }
 
-  public void setResponse(String response) {
-    this.response = response;
-  }
+    public void setResponse(String response) {
+        this.response = response;
+    }
 }

@@ -19,25 +19,25 @@ import lombok.*;
 @AllArgsConstructor
 public class Quiz {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
-  private String title;
+    private String title;
 
-  @ManyToMany
-  private List<Question> questions;
+    @ManyToMany
+    private List<Question> questions;
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  public void setTitle(String title) {
-    this.title = title;
-  }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-  public void setQuestions(List<Question> questions) {
-    this.questions = questions;
-  }
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
 
 }

@@ -26,7 +26,8 @@ public class QuizServiceTest {
     @Mock
     private QuizDao quizDao;
 
-    @Mock private QuestionDao questionDao;
+    @Mock
+    private QuestionDao questionDao;
 
     @InjectMocks
     private QuizService quizService;
@@ -45,9 +46,8 @@ public class QuizServiceTest {
 
 
     @BeforeEach
-    public void setup(){
-        question = Question.builder().id(23).title("Title").option1("o1").option2("o2").option3("o3").option4("o4")
-                .category("SQL").answer("o2").build();
+    public void setup() {
+        question = Question.builder().id(23).title("Title").option1("o1").option2("o2").option3("o3").option4("o4").category("SQL").answer("o2").build();
 
         category = "SQL";
 
@@ -59,7 +59,7 @@ public class QuizServiceTest {
 
 
     @Test
-    void createNewQuiz(){
+    void createNewQuiz() {
         List<Question> questions = IntStream.range(0, noQues).mapToObj(i -> question).collect(Collectors.toList());
         Mockito.when(questionDao.giveRandomQuestionsByCategory(Mockito.eq(category), Mockito.eq(noQues))).thenReturn(questions);
 
@@ -73,12 +73,12 @@ public class QuizServiceTest {
     }
 
     @Test
-    void getUserScore(){
+    void getUserScore() {
         ArrayList<Response> responses = new ArrayList<Response>();
         responses.add(Response.builder().id(23).response("o2").build());
         UserResponse userResponse = UserResponse.builder().quizId(23).responses(responses).build();
 
-        Quiz  quiz = Quiz.builder().id(23).questions(List.of(question)).build();
+        Quiz quiz = Quiz.builder().id(23).questions(List.of(question)).build();
 
         Mockito.when(quizDao.findById(23)).thenReturn(Optional.of(quiz));
 
@@ -90,7 +90,7 @@ public class QuizServiceTest {
     }
 
     @Test
-    void createNewQuizAcceptingQuestions(){
+    void createNewQuizAcceptingQuestions() {
         //here we do all the magic here bitch
 
         QuizQuestions quizQuestions = QuizQuestions.builder().title("Quizzes").questions(List.of(question)).build();

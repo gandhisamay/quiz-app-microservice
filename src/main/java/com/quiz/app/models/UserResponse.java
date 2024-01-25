@@ -18,23 +18,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserResponse {
 
-  private int quizId;
+    private int quizId;
 
-  public int getQuizId() {
-    return quizId;
-  }
+    public int getQuizId() {
+        return quizId;
+    }
 
-  public void setQuizId(int quizId) {
-    this.quizId = quizId;
-  }
+    public void setQuizId(int quizId) {
+        this.quizId = quizId;
+    }
 
-  private List<Response> responses;
+    private List<Response> responses;
 
-  public List<Response> getResponses() {
-    return responses;
-  }
+    public List<Response> getResponses() {
+        return responses;
+    }
 
-  public void setResponses(List<Response> responses) {
-    this.responses = responses;
-  }
+    public void setResponses(List<Response> responses) {
+        this.responses = responses;
+    }
 }

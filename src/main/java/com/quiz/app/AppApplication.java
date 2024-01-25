@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 @SpringBootApplication(scanBasePackages = "com.quiz.app")
 public class AppApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(AppApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(AppApplication.class, args);
+    }
 
 }
